@@ -79,19 +79,19 @@ class NaiveBayes:
                 # self.vocab_per_class[word][c] += 1
             self.words_per_class[c]+=len(words)
         
-        # for word in self.vocab_per_class:
-            # word_class_count=0
-            # total_count = sum(self.vocab_per_class[word].values())
-            # flag = True
-            # for v in self.vocab_per_class[word].values():
-                # if v!=0:
-                    # word_class_count+=1
-                # if(v<total_count*0.07):
-                    # flag=False
-                    # break
-            # if word_class_count>=7 and flag:
-                # self.discarded_words[word]=1
-        # print(len(self.discarded_words))
+        for word in self.vocab_per_class:
+            word_class_count=0
+            total_count = sum(self.vocab_per_class[word].values())
+            flag = True
+            for v in self.vocab_per_class[word].values():
+                if v!=0:
+                    word_class_count+=1
+                if(v<total_count*0.07):
+                    flag=False
+                    break
+            if word_class_count>=7 and flag:
+                self.discarded_words[word]=1
+        print(len(self.discarded_words))
     
     #function to calculate the fraction of text belonging to each class
     def CalculateClassesProb(self):
